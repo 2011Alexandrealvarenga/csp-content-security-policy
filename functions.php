@@ -33,6 +33,19 @@ function meu_tema_scripts() {
     wp_enqueue_style('meu-tema-style', get_stylesheet_uri());
     
     // Scripts (descomente se necessário)
-    // wp_enqueue_script('meu-tema-script', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true);
+    wp_enqueue_script('meu-tema-script', get_template_directory_uri() . '/scripts.js', array(), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'meu_tema_scripts');
+
+
+function add_csp_header() {
+$csp = "default-src 'self'; "; 
+$csp .= "script-src 'self' ; "; 
+$csp .= "style-src 'self' ; "; 
+$csp .= "img-src 'self' data: https: https://compras.sp.gov.br https://saopaulo.sp.gov.br"; 
+$csp .= "font-src 'self' https://saopaulo.sp.gov.br; "; 
+$csp .= "connect-src 'self'; "; 
+$csp .= "frame-src 'none';"; 
+header("Content-Security-Policy: $csp");
+}
+add_action('send_headers', 'add_csp_header');
