@@ -12,5 +12,5 @@
     <?php else : ?>
         <p>Nenhum post encontrado.</p>
     <?php endif; ?>
-
+teste
 <?php get_footer(); ?>
